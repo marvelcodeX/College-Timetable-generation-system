@@ -2,6 +2,8 @@
 
 A web application that automatically generates conflict-free class timetables for colleges and universities using a **Genetic Algorithm**, built with Django and SQLite.
 
+---
+
 ## Features
 
 - **Genetic Algorithm** — Evolves timetable candidates over generations to find optimal, conflict-free schedules
@@ -12,6 +14,8 @@ A web application that automatically generates conflict-free class timetables fo
 - **PDF Export** — Print or save the timetable as PDF via browser print
 - **Authentication** — User registration, login, logout, and password change
 
+---
+
 ## Tech Stack
 
 | Technology | Purpose |
@@ -21,6 +25,8 @@ A web application that automatically generates conflict-free class timetables fo
 | SQLite | Database |
 | Bootstrap 5.3 | Frontend UI |
 | Genetic Algorithm | Timetable optimization |
+
+---
 
 ## Project Structure
 
@@ -56,6 +62,7 @@ College-Timetable-generation-system/
         ├── timetable_result.html
         └── (CRUD templates for each entity)
 ```
+---
 
 ## How to Run
 
@@ -91,6 +98,7 @@ python manage.py runserver
 
 # 7. Open http://127.0.0.1:8000/ in your browser
 ```
+---
 
 ## How to Use
 
@@ -102,6 +110,8 @@ python manage.py runserver
 6. **Add Departments** — Group courses into departments
 7. **Add Sections** — Create student sections, assign to departments, set classes per week
 8. **Generate** — Click "Generate Timetable" and view the conflict-free result
+
+---
 
 ## Genetic Algorithm Details
 
@@ -120,19 +130,19 @@ The algorithm uses the following approach:
 
 A fitness of 1.0 means zero conflicts (perfect timetable).
 
+---
+
+## Demo Images
+|---|---|
+| ![TTG 1](demo_images/TTG_1.pngg) | ![TTG 2](demo_images/TTG_2.png) |
+
 ## Suggested Improvements
 
 - [ ] **Edit functionality** — Allow editing existing records (currently only add/delete)
 - [ ] **Instructor preferences** — Allow teachers to set preferred/unavailable time slots
 - [ ] **Lab sessions** — Support for multi-hour lab blocks
 - [ ] **Multiple timetable versions** — Save and compare different generated timetables
-- [ ] **Async generation** — Use Celery/background tasks for generation to avoid page timeout on large datasets
-- [ ] **Export formats** — Add Excel/CSV export alongside PDF
 - [ ] **Room type constraints** — Distinguish between lecture halls, labs, seminar rooms
-- [ ] **Break time support** — Enforce lunch breaks and minimum gaps between classes
-- [ ] **API endpoints** — REST API for programmatic timetable generation
-- [ ] **Multi-semester support** — Handle different timetables per semester
-- [ ] **Drag-and-drop manual adjustments** — Allow manual tweaks to generated timetables
 - [ ] **Conflict visualization** — Highlight specific conflicts when a perfect solution isn't found
 
 ## Credits
