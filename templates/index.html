@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block title %}Home | Timetable Generator{% endblock %}
+
+{% block content %}
+<section class="hero-section text-center">
+    <div class="container">
+        <h1 class="display-4 fw-bold mb-3">College Timetable Generator</h1>
+        <p class="lead mb-4 mx-auto" style="max-width: 600px;">
+            Automatically generate conflict-free timetables for your college or university using an intelligent genetic algorithm.
+        </p>
+        <div class="d-flex gap-3 justify-content-center">
+            {% if user.is_authenticated %}
+            <a href="{% url 'dashboard' %}" class="btn btn-light btn-lg px-4">Go to Dashboard</a>
+            {% else %}
+            <a href="{% url 'login' %}" class="btn btn-light btn-lg px-4">Get Started</a>
+            <a href="{% url 'about' %}" class="btn btn-outline-light btn-lg px-4">Learn More</a>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">How It Works</h2>
+            <p class="text-muted">Three simple steps to generate your timetable</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="text-center">
+                    <div class="feature-icon mx-auto"><i class="fas fa-database"></i></div>
+                    <h5 class="fw-bold">1. Enter Data</h5>
+                    <p class="text-muted">Add teachers, rooms, time slots, courses, departments, and sections.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="text-center">
+                    <div class="feature-icon mx-auto" style="background: #7209b7;"><i class="fas fa-cogs"></i></div>
+                    <h5 class="fw-bold">2. Generate</h5>
+                    <p class="text-muted">Our genetic algorithm optimizes the timetable to avoid all conflicts.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="text-center">
+                    <div class="feature-icon mx-auto" style="background: #f72585;"><i class="fas fa-download"></i></div>
+                    <h5 class="fw-bold">3. Download</h5>
+                    <p class="text-muted">View the conflict-free timetable and download it as a PDF.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card border-0 h-100 text-center p-4">
+                    <i class="fas fa-bolt fa-2x text-warning mb-3"></i>
+                    <h5>Fast</h5>
+                    <p class="text-muted mb-0">Generates complete timetables in seconds, not hours.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card border-0 h-100 text-center p-4">
+                    <i class="fas fa-shield-alt fa-2x text-success mb-3"></i>
+                    <h5>Conflict-Free</h5>
+                    <p class="text-muted mb-0">No room, teacher, or section scheduling conflicts.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card border-0 h-100 text-center p-4">
+                    <i class="fas fa-check-circle fa-2x text-primary mb-3"></i>
+                    <h5>Reliable</h5>
+                    <p class="text-muted mb-0">Uses proven genetic algorithm for optimal results.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

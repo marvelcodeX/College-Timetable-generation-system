@@ -1,0 +1,27 @@
+{% extends "dashboard/base_dashboard.html" %}
+{% block title %}Rooms{% endblock %}
+{% block page_title %}All Rooms{% endblock %}
+{% block dashboard_content %}
+<div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <span>Rooms ({{ rooms|length }})</span>
+        <a href="{% url 'add_room' %}" class="btn btn-primary btn-sm"><i class="fas fa-plus me-1"></i> Add New</a>
+    </div>
+    <div class="card-body p-0">
+        {% if rooms %}
+        <table class="table table-hover mb-0">
+            <thead class="table-light"><tr><th>Room ID</th><th>Capacity</th><th>Action</th></tr></thead>
+            <tbody>
+            {% for room in rooms %}
+                <tr>
+                    <td>{{ room.r_number }}</td>
+                    <td>{{ room.seating_capacity }}</td>
+                    <td><form method="post" action="{% url 'delete_room' room.pk %}" class="d-inline">{% csrf_token %}<button class="btn btn-outline-danger btn-sm" onclick="return confirm('Delete?')"><i class="fas fa-trash"></i></button></form></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% else %}<div class="p-4 text-center text-muted">No rooms added yet. <a href="{% url 'add_room' %}">Add one</a>.</div>{% endif %}
+    </div>
+</div>
+{% endblock %}

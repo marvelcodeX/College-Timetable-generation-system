@@ -1,0 +1,174 @@
+{% extends "dashboard/base_dashboard.html" %}
+
+{% block title %}Dashboard{% endblock %}
+{% block page_title %}Dashboard Overview{% endblock %}
+
+{% block dashboard_content %}
+<div class="row g-4 mb-4">
+    <div class="col-md-4 col-sm-6">
+        <div class="stat-card">
+            <div class="stat-icon" style="background: #e3f2fd; color: #1976d2;"><i class="fas fa-chalkboard-teacher"></i></div>
+            <div>
+                <div class="stat-value">{{ num_teachers }}</div>
+                <div class="stat-label">Teachers</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 col-sm-6">
+        <div class="stat-card">
+            <div class="stat-icon" style="background: #e8f5e9; color: #388e3c;"><i class="fas fa-door-open"></i></div>
+            <div>
+                <div class="stat-value">{{ num_rooms }}</div>
+                <div class="stat-label">Rooms</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 col-sm-6">
+        <div class="stat-card">
+            <div class="stat-icon" style="background: #fff3e0; color: #f57c00;"><i class="fas fa-clock"></i></div>
+            <div>
+                <div class="stat-value">{{ num_timeslots }}</div>
+                <div class="stat-label">Time Slots</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 col-sm-6">
+        <div class="stat-card">
+            <div class="stat-icon" style="background: #fce4ec; color: #c62828;"><i class="fas fa-book"></i></div>
+            <div>
+                <div class="stat-value">{{ num_courses }}</div>
+                <div class="stat-label">Courses</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 col-sm-6">
+        <div class="stat-card">
+            <div class="stat-icon" style="background: #f3e5f5; color: #7b1fa2;"><i class="fas fa-building"></i></div>
+            <div>
+                <div class="stat-value">{{ num_departments }}</div>
+                <div class="stat-label">Departments</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 col-sm-6">
+        <div class="stat-card">
+            <div class="stat-icon" style="background: #e0f7fa; color: #00838f;"><i class="fas fa-users"></i></div>
+            <div>
+                <div class="stat-value">{{ num_sections }}</div>
+                <div class="stat-label">Sections</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card border-0 shadow-sm">
+    <div class="card-body p-4">
+        <div class="d-flex align-items-center mb-4">
+            <div style="width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,#4361ee,#7209b7);display:flex;align-items:center;justify-content:center;" class="me-3">
+                <i class="fas fa-rocket text-white"></i>
+            </div>
+            <div>
+                <h5 class="fw-bold mb-0">Quick Start Guide</h5>
+                <small class="text-muted">Follow these steps in order to generate your first timetable</small>
+            </div>
+        </div>
+
+        <div class="row g-3 mb-4">
+            <div class="col-lg-4 col-md-6">
+                <a href="{% url 'add_instructor' %}" class="text-decoration-none">
+                    <div class="d-flex align-items-center p-3 rounded-3 h-100" style="background:#e3f2fd;border:1px solid #e3f2fd;transition:transform .15s,box-shadow .15s;" onmouseenter="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 12px rgba(0,0,0,.1)'" onmouseleave="this.style.transform='';this.style.boxShadow=''">
+                        <div class="d-flex align-items-center justify-content-center rounded-circle me-3 flex-shrink-0" style="width:40px;height:40px;background:white;box-shadow:0 2px 6px rgba(0,0,0,.08);">
+                            <span class="fw-bold" style="color:#1976d2;">1</span>
+                        </div>
+                        <div>
+                            <div class="fw-semibold" style="color:#1976d2;">Add Teachers</div>
+                            <small class="text-muted"><i class="fas fa-chalkboard-teacher me-1" style="color:#1976d2;font-size:.75rem;"></i>Click to add</small>
+                        </div>
+                        <i class="fas fa-chevron-right ms-auto" style="color:#1976d2;opacity:.4;"></i>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <a href="{% url 'add_room' %}" class="text-decoration-none">
+                    <div class="d-flex align-items-center p-3 rounded-3 h-100" style="background:#e8f5e9;border:1px solid #e8f5e9;transition:transform .15s,box-shadow .15s;" onmouseenter="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 12px rgba(0,0,0,.1)'" onmouseleave="this.style.transform='';this.style.boxShadow=''">
+                        <div class="d-flex align-items-center justify-content-center rounded-circle me-3 flex-shrink-0" style="width:40px;height:40px;background:white;box-shadow:0 2px 6px rgba(0,0,0,.08);">
+                            <span class="fw-bold" style="color:#388e3c;">2</span>
+                        </div>
+                        <div>
+                            <div class="fw-semibold" style="color:#388e3c;">Add Rooms</div>
+                            <small class="text-muted"><i class="fas fa-door-open me-1" style="color:#388e3c;font-size:.75rem;"></i>Click to add</small>
+                        </div>
+                        <i class="fas fa-chevron-right ms-auto" style="color:#388e3c;opacity:.4;"></i>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <a href="{% url 'add_timeslot' %}" class="text-decoration-none">
+                    <div class="d-flex align-items-center p-3 rounded-3 h-100" style="background:#fff3e0;border:1px solid #fff3e0;transition:transform .15s,box-shadow .15s;" onmouseenter="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 12px rgba(0,0,0,.1)'" onmouseleave="this.style.transform='';this.style.boxShadow=''">
+                        <div class="d-flex align-items-center justify-content-center rounded-circle me-3 flex-shrink-0" style="width:40px;height:40px;background:white;box-shadow:0 2px 6px rgba(0,0,0,.08);">
+                            <span class="fw-bold" style="color:#f57c00;">3</span>
+                        </div>
+                        <div>
+                            <div class="fw-semibold" style="color:#f57c00;">Add Time Slots</div>
+                            <small class="text-muted"><i class="fas fa-clock me-1" style="color:#f57c00;font-size:.75rem;"></i>Click to add</small>
+                        </div>
+                        <i class="fas fa-chevron-right ms-auto" style="color:#f57c00;opacity:.4;"></i>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <a href="{% url 'add_course' %}" class="text-decoration-none">
+                    <div class="d-flex align-items-center p-3 rounded-3 h-100" style="background:#fce4ec;border:1px solid #fce4ec;transition:transform .15s,box-shadow .15s;" onmouseenter="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 12px rgba(0,0,0,.1)'" onmouseleave="this.style.transform='';this.style.boxShadow=''">
+                        <div class="d-flex align-items-center justify-content-center rounded-circle me-3 flex-shrink-0" style="width:40px;height:40px;background:white;box-shadow:0 2px 6px rgba(0,0,0,.08);">
+                            <span class="fw-bold" style="color:#c62828;">4</span>
+                        </div>
+                        <div>
+                            <div class="fw-semibold" style="color:#c62828;">Add Courses</div>
+                            <small class="text-muted"><i class="fas fa-book me-1" style="color:#c62828;font-size:.75rem;"></i>Assign teachers</small>
+                        </div>
+                        <i class="fas fa-chevron-right ms-auto" style="color:#c62828;opacity:.4;"></i>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <a href="{% url 'add_department' %}" class="text-decoration-none">
+                    <div class="d-flex align-items-center p-3 rounded-3 h-100" style="background:#f3e5f5;border:1px solid #f3e5f5;transition:transform .15s,box-shadow .15s;" onmouseenter="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 12px rgba(0,0,0,.1)'" onmouseleave="this.style.transform='';this.style.boxShadow=''">
+                        <div class="d-flex align-items-center justify-content-center rounded-circle me-3 flex-shrink-0" style="width:40px;height:40px;background:white;box-shadow:0 2px 6px rgba(0,0,0,.08);">
+                            <span class="fw-bold" style="color:#7b1fa2;">5</span>
+                        </div>
+                        <div>
+                            <div class="fw-semibold" style="color:#7b1fa2;">Add Departments</div>
+                            <small class="text-muted"><i class="fas fa-building me-1" style="color:#7b1fa2;font-size:.75rem;"></i>Assign courses</small>
+                        </div>
+                        <i class="fas fa-chevron-right ms-auto" style="color:#7b1fa2;opacity:.4;"></i>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <a href="{% url 'add_section' %}" class="text-decoration-none">
+                    <div class="d-flex align-items-center p-3 rounded-3 h-100" style="background:#e0f7fa;border:1px solid #e0f7fa;transition:transform .15s,box-shadow .15s;" onmouseenter="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 12px rgba(0,0,0,.1)'" onmouseleave="this.style.transform='';this.style.boxShadow=''">
+                        <div class="d-flex align-items-center justify-content-center rounded-circle me-3 flex-shrink-0" style="width:40px;height:40px;background:white;box-shadow:0 2px 6px rgba(0,0,0,.08);">
+                            <span class="fw-bold" style="color:#00838f;">6</span>
+                        </div>
+                        <div>
+                            <div class="fw-semibold" style="color:#00838f;">Add Sections</div>
+                            <small class="text-muted"><i class="fas fa-users me-1" style="color:#00838f;font-size:.75rem;"></i>Set classes/week</small>
+                        </div>
+                        <i class="fas fa-chevron-right ms-auto" style="color:#00838f;opacity:.4;"></i>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="d-flex flex-wrap align-items-center gap-3">
+            <a href="{% url 'generate' %}" class="btn btn-lg px-4 fw-semibold text-white" style="background:linear-gradient(135deg,#4361ee,#7209b7);border:none;border-radius:12px;transition:transform .15s,box-shadow .15s;" onmouseenter="this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 20px rgba(67,97,238,.35)'" onmouseleave="this.style.transform='';this.style.boxShadow=''">
+                <i class="fas fa-magic me-2"></i>Generate Timetable
+            </a>
+            <div class="d-flex align-items-start p-3 rounded-3 flex-grow-1" style="background:#f0f4ff;border-left:3px solid #4361ee;">
+                <i class="fas fa-lightbulb me-2 mt-1" style="color:#4361ee;"></i>
+                <small class="text-muted"><strong style="color:#333;">Tip:</strong> Add data in order — courses need teachers, departments need courses, and sections need departments.</small>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

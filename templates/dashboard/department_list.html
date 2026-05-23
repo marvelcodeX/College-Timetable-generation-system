@@ -1,0 +1,27 @@
+{% extends "dashboard/base_dashboard.html" %}
+{% block title %}Departments{% endblock %}
+{% block page_title %}All Departments{% endblock %}
+{% block dashboard_content %}
+<div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <span>Departments ({{ departments|length }})</span>
+        <a href="{% url 'add_department' %}" class="btn btn-primary btn-sm"><i class="fas fa-plus me-1"></i> Add New</a>
+    </div>
+    <div class="card-body p-0">
+        {% if departments %}
+        <table class="table table-hover mb-0">
+            <thead class="table-light"><tr><th>Name</th><th>Courses</th><th>Action</th></tr></thead>
+            <tbody>
+            {% for dept in departments %}
+                <tr>
+                    <td>{{ dept.dept_name }}</td>
+                    <td>{% for c in dept.courses.all %}{{ c.course_name }}{% if not forloop.last %}, {% endif %}{% endfor %}</td>
+                    <td><form method="post" action="{% url 'delete_department' dept.pk %}" class="d-inline">{% csrf_token %}<button class="btn btn-outline-danger btn-sm" onclick="return confirm('Delete?')"><i class="fas fa-trash"></i></button></form></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% else %}<div class="p-4 text-center text-muted">No departments added yet. <a href="{% url 'add_department' %}">Add one</a>.</div>{% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %}About | Timetable Generator{% endblock %}
+
+{% block content %}
+<section style="padding-top: 100px;" class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <h1 class="fw-bold mb-4">About This Project</h1>
+                <p class="lead text-muted">
+                    The College Timetable Generation System is a web application that uses a
+                    <strong>Genetic Algorithm</strong> to automatically generate conflict-free
+                    class timetables for colleges and universities.
+                </p>
+
+                <h4 class="mt-5 mb-3">How It Works</h4>
+                <p>The system uses an evolutionary approach to solve the timetable scheduling problem:</p>
+                <ol>
+                    <li><strong>Initialization</strong> — Random timetables are generated as the initial population</li>
+                    <li><strong>Fitness Evaluation</strong> — Each timetable is scored based on constraint violations</li>
+                    <li><strong>Selection</strong> — The best timetables are selected via tournament selection</li>
+                    <li><strong>Crossover</strong> — Parent timetables combine to create offspring</li>
+                    <li><strong>Mutation</strong> — Random changes introduce diversity</li>
+                    <li><strong>Repeat</strong> — The process continues until a conflict-free timetable is found</li>
+                </ol>
+
+                <h4 class="mt-5 mb-3">Constraints Enforced</h4>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="card p-3 h-100">
+                            <h6><i class="fas fa-times-circle text-danger me-2"></i>No Room Conflicts</h6>
+                            <small class="text-muted">Two classes cannot be in the same room at the same time.</small>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card p-3 h-100">
+                            <h6><i class="fas fa-times-circle text-danger me-2"></i>No Teacher Conflicts</h6>
+                            <small class="text-muted">A teacher cannot teach two classes simultaneously.</small>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card p-3 h-100">
+                            <h6><i class="fas fa-times-circle text-danger me-2"></i>No Section Conflicts</h6>
+                            <small class="text-muted">A section cannot have two classes at the same time.</small>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card p-3 h-100">
+                            <h6><i class="fas fa-check-circle text-success me-2"></i>Capacity Check</h6>
+                            <small class="text-muted">Room capacity must accommodate the number of students.</small>
+                        </div>
+                    </div>
+                </div>
+
+                <h4 class="mt-5 mb-3">Technologies</h4>
+                <div class="d-flex flex-wrap gap-2">
+                    <span class="badge bg-primary">Python</span>
+                    <span class="badge bg-success">Django</span>
+                    <span class="badge bg-info">SQLite</span>
+                    <span class="badge bg-warning text-dark">Bootstrap 5</span>
+                    <span class="badge bg-secondary">Genetic Algorithm</span>
+                    <span class="badge bg-dark">HTML/CSS/JS</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

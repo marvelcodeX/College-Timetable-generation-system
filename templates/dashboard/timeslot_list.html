@@ -1,0 +1,28 @@
+{% extends "dashboard/base_dashboard.html" %}
+{% block title %}Time Slots{% endblock %}
+{% block page_title %}All Time Slots{% endblock %}
+{% block dashboard_content %}
+<div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <span>Time Slots ({{ timeslots|length }})</span>
+        <a href="{% url 'add_timeslot' %}" class="btn btn-primary btn-sm"><i class="fas fa-plus me-1"></i> Add New</a>
+    </div>
+    <div class="card-body p-0">
+        {% if timeslots %}
+        <table class="table table-hover mb-0">
+            <thead class="table-light"><tr><th>Slot ID</th><th>Day</th><th>Time</th><th>Action</th></tr></thead>
+            <tbody>
+            {% for ts in timeslots %}
+                <tr>
+                    <td>{{ ts.pid }}</td>
+                    <td>{{ ts.day }}</td>
+                    <td>{{ ts.time }}</td>
+                    <td><form method="post" action="{% url 'delete_timeslot' ts.pk %}" class="d-inline">{% csrf_token %}<button class="btn btn-outline-danger btn-sm" onclick="return confirm('Delete?')"><i class="fas fa-trash"></i></button></form></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% else %}<div class="p-4 text-center text-muted">No time slots added yet. <a href="{% url 'add_timeslot' %}">Add one</a>.</div>{% endif %}
+    </div>
+</div>
+{% endblock %}

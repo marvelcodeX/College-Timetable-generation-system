@@ -1,0 +1,38 @@
+{% extends "dashboard/base_dashboard.html" %}
+
+{% block title %}Teachers{% endblock %}
+{% block page_title %}All Teachers{% endblock %}
+
+{% block dashboard_content %}
+<div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <span>Teachers ({{ instructors|length }})</span>
+        <a href="{% url 'add_instructor' %}" class="btn btn-primary btn-sm"><i class="fas fa-plus me-1"></i> Add New</a>
+    </div>
+    <div class="card-body p-0">
+        {% if instructors %}
+        <table class="table table-hover mb-0">
+            <thead class="table-light">
+                <tr><th>ID</th><th>Name</th><th>Action</th></tr>
+            </thead>
+            <tbody>
+            {% for inst in instructors %}
+                <tr>
+                    <td>{{ inst.uid }}</td>
+                    <td>{{ inst.name }}</td>
+                    <td>
+                        <form method="post" action="{% url 'delete_instructor' inst.pk %}" class="d-inline">
+                            {% csrf_token %}
+                            <button class="btn btn-outline-danger btn-sm" onclick="return confirm('Delete this teacher?')"><i class="fas fa-trash"></i></button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <div class="p-4 text-center text-muted">No teachers added yet. <a href="{% url 'add_instructor' %}">Add one</a>.</div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "dashboard/base_dashboard.html" %}
+{% block title %}Sections{% endblock %}
+{% block page_title %}All Sections{% endblock %}
+{% block dashboard_content %}
+<div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <span>Sections ({{ sections|length }})</span>
+        <a href="{% url 'add_section' %}" class="btn btn-primary btn-sm"><i class="fas fa-plus me-1"></i> Add New</a>
+    </div>
+    <div class="card-body p-0">
+        {% if sections %}
+        <table class="table table-hover mb-0">
+            <thead class="table-light"><tr><th>Section ID</th><th>Department</th><th>Classes/Week</th><th>Action</th></tr></thead>
+            <tbody>
+            {% for sec in sections %}
+                <tr>
+                    <td>{{ sec.section_id }}</td>
+                    <td>{{ sec.department }}</td>
+                    <td>{{ sec.num_class_in_week }}</td>
+                    <td><form method="post" action="{% url 'delete_section' sec.pk %}" class="d-inline">{% csrf_token %}<button class="btn btn-outline-danger btn-sm" onclick="return confirm('Delete?')"><i class="fas fa-trash"></i></button></form></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% else %}<div class="p-4 text-center text-muted">No sections added yet. <a href="{% url 'add_section' %}">Add one</a>.</div>{% endif %}
+    </div>
+</div>
+{% endblock %}

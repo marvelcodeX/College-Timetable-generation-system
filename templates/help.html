@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block title %}Help | Timetable Generator{% endblock %}
+
+{% block content %}
+<section style="padding-top: 100px;" class="py-5">
+    <div class="container">
+        <div class="col-lg-8 mx-auto">
+            <h1 class="fw-bold mb-4">Getting Started Guide</h1>
+            <p class="lead text-muted">Follow these steps to generate your timetable.</p>
+
+            <div class="accordion" id="helpAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#step1">
+                            Step 1: Add Teachers
+                        </button>
+                    </h2>
+                    <div id="step1" class="accordion-collapse collapse show" data-bs-parent="#helpAccordion">
+                        <div class="accordion-body">
+                            Navigate to <strong>Dashboard → Teachers</strong> and add each teacher with a unique ID and full name.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#step2">
+                            Step 2: Add Rooms
+                        </button>
+                    </h2>
+                    <div id="step2" class="accordion-collapse collapse" data-bs-parent="#helpAccordion">
+                        <div class="accordion-body">
+                            Add all available classrooms with their room number and seating capacity.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#step3">
+                            Step 3: Add Time Slots
+                        </button>
+                    </h2>
+                    <div id="step3" class="accordion-collapse collapse" data-bs-parent="#helpAccordion">
+                        <div class="accordion-body">
+                            Define available time slots for each day. For example: Monday 9:30-10:30, Monday 10:30-11:30, etc.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#step4">
+                            Step 4: Add Courses
+                        </button>
+                    </h2>
+                    <div id="step4" class="accordion-collapse collapse" data-bs-parent="#helpAccordion">
+                        <div class="accordion-body">
+                            Add courses with their code, name, max students, and assign teacher(s).
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#step5">
+                            Step 5: Add Departments & Sections
+                        </button>
+                    </h2>
+                    <div id="step5" class="accordion-collapse collapse" data-bs-parent="#helpAccordion">
+                        <div class="accordion-body">
+                            Create departments, assign courses, then create sections within departments specifying classes per week.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#step6">
+                            Step 6: Generate Timetable
+                        </button>
+                    </h2>
+                    <div id="step6" class="accordion-collapse collapse" data-bs-parent="#helpAccordion">
+                        <div class="accordion-body">
+                            Go to <strong>Generate Timetable</strong>, verify data, and click Generate. Download the result as PDF.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

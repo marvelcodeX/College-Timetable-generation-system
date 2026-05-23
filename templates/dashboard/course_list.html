@@ -1,0 +1,29 @@
+{% extends "dashboard/base_dashboard.html" %}
+{% block title %}Courses{% endblock %}
+{% block page_title %}All Courses{% endblock %}
+{% block dashboard_content %}
+<div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <span>Courses ({{ courses|length }})</span>
+        <a href="{% url 'add_course' %}" class="btn btn-primary btn-sm"><i class="fas fa-plus me-1"></i> Add New</a>
+    </div>
+    <div class="card-body p-0">
+        {% if courses %}
+        <table class="table table-hover mb-0">
+            <thead class="table-light"><tr><th>Code</th><th>Name</th><th>Max Students</th><th>Teachers</th><th>Action</th></tr></thead>
+            <tbody>
+            {% for course in courses %}
+                <tr>
+                    <td>{{ course.course_number }}</td>
+                    <td>{{ course.course_name }}</td>
+                    <td>{{ course.max_numb_students }}</td>
+                    <td>{% for inst in course.instructors.all %}{{ inst.name }}{% if not forloop.last %}, {% endif %}{% endfor %}</td>
+                    <td><form method="post" action="{% url 'delete_course' course.pk %}" class="d-inline">{% csrf_token %}<button class="btn btn-outline-danger btn-sm" onclick="return confirm('Delete?')"><i class="fas fa-trash"></i></button></form></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% else %}<div class="p-4 text-center text-muted">No courses added yet. <a href="{% url 'add_course' %}">Add one</a>.</div>{% endif %}
+    </div>
+</div>
+{% endblock %}

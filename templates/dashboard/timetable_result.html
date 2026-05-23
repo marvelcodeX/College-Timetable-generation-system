@@ -1,0 +1,99 @@
+{% extends "dashboard/base_dashboard.html" %}
+{% block title %}Generated Timetable{% endblock %}
+{% block page_title %}Generated Timetable{% endblock %}
+
+{% block extra_css %}
+<style>
+    .timetable-grid { font-size: 0.85rem; }
+    .timetable-grid th { background: #f8f9fa; white-space: nowrap; }
+    .timetable-grid td { vertical-align: middle; min-width: 140px; }
+    .class-cell {
+        background: #e8f4fd;
+        border-radius: 6px;
+        padding: 6px 8px;
+        font-size: 0.8rem;
+    }
+    .class-cell .course-name { font-weight: 600; color: #1565c0; }
+    .class-cell .details { color: #666; font-size: 0.75rem; }
+    .empty-cell { color: #ccc; text-align: center; }
+
+    @media print {
+        .sidebar, .top-bar, .no-print, .alert { display: none !important; }
+        .main-content { margin-left: 0 !important; padding: 0 !important; }
+        .card { box-shadow: none !important; border: 1px solid #ddd !important; }
+    }
+</style>
+{% endblock %}
+
+{% block dashboard_content %}
+<!-- Status Banner -->
+{% if is_perfect %}
+<div class="alert alert-success no-print">
+    <i class="fas fa-check-circle me-2"></i>
+    <strong>Perfect timetable generated!</strong> Zero conflicts found in {{ generations }} generation{{ generations|pluralize }}.
+</div>
+{% else %}
+<div class="alert alert-warning no-print">
+    <i class="fas fa-exclamation-triangle me-2"></i>
+    <strong>Best-effort timetable.</strong> {{ conflicts }} conflict{{ conflicts|pluralize }} remaining after {{ generations }} generations.
+    You may want to add more rooms or time slots and try again.
+</div>
+{% endif %}
+
+<div class="d-flex gap-2 mb-4 no-print">
+    <button onclick="window.print()" class="btn btn-outline-primary"><i class="fas fa-print me-1"></i> Print / Save PDF</button>
+    <a href="{% url 'generate' %}" class="btn btn-outline-secondary"><i class="fas fa-redo me-1"></i> Regenerate</a>
+</div>
+
+<!-- Timetable for each section -->
+{% for section, grid in timetable_data.items %}
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-calendar me-2"></i>
+        <strong>{{ section.section_id }}</strong> — {{ section.department }}
+    </div>
+    <div class="card-body p-0 table-responsive">
+        <table class="table table-bordered timetable-grid mb-0">
+            <thead>
+                <tr>
+                    <th class="text-center" style="width: 100px;">Day / Time</th>
+                    {% for time in times %}
+                    <th class="text-center">{{ time }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for day in days %}
+                <tr>
+                    <th class="text-center align-middle">{{ day }}</th>
+                    {% for time in times %}
+                    <td>
+                        {% with cell=grid|dictsort:day %}
+                        {% endwith %}
+                        {% if grid %}
+                            {% for d, time_slots in grid.items %}
+                                {% if d == day %}
+                                    {% for t, cls in time_slots.items %}
+                                        {% if t == time and cls %}
+                                        <div class="class-cell">
+                                            <div class="course-name">{{ cls.course }}</div>
+                                            <div class="details"><i class="fas fa-user me-1"></i>{{ cls.instructor }}</div>
+                                            <div class="details"><i class="fas fa-map-marker-alt me-1"></i>{{ cls.room }}</div>
+                                        </div>
+                                        {% elif t == time and not cls %}
+                                        <div class="empty-cell">—</div>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    </td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}
