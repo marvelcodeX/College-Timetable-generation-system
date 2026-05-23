@@ -134,7 +134,7 @@ A fitness of 1.0 means zero conflicts (perfect timetable).
 
 ## Demo Images
 |---|---|
-| ![TTG 1](demo_images/TTG_1.pngg) | ![TTG 2](demo_images/TTG_2.png) |
+| ![TTG 1](demo_images/TTG_1.png) | ![TTG 2](demo_images/TTG_2.png) |
 
 ## Suggested Improvements
 
