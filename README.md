@@ -133,9 +133,10 @@ A fitness of 1.0 means zero conflicts (perfect timetable).
 ---
 
 ## Demo Images
-|---|---|
+| | |
 | ![TTG 1](demo_images/TTG_1.png) | ![TTG 2](demo_images/TTG_2.png) |
 
+---
 ## Suggested Improvements
 
 - [ ] **Edit functionality** — Allow editing existing records (currently only add/delete)
@@ -144,6 +145,8 @@ A fitness of 1.0 means zero conflicts (perfect timetable).
 - [ ] **Multiple timetable versions** — Save and compare different generated timetables
 - [ ] **Room type constraints** — Distinguish between lecture halls, labs, seminar rooms
 - [ ] **Conflict visualization** — Highlight specific conflicts when a perfect solution isn't found
+
+---
 
 ## Credits
 
